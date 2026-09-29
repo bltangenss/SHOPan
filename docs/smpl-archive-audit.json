@@ -1,0 +1,43 @@
+{
+  "source": "C:\\Users\\ASUS\\Downloads\\virtual-fitting-room-ai\\.source-inspection\\smpl\\SMPL_python_v.1.1.0",
+  "source_type": "directory",
+  "file_count": 14,
+  "total_uncompressed_bytes": 741847629,
+  "extensions": {
+    ".pkl": 3,
+    ".py": 8,
+    ".txt": 2,
+    "[none]": 1
+  },
+  "model_parameter_files": [
+    "smpl/models/basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+    "smpl/models/basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+    "smpl/models/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl"
+  ],
+  "geometry_files": [],
+  "potential_tabular_files": [],
+  "sample_paths": [
+    "smpl/.DS_Store",
+    "smpl/__init__.py",
+    "smpl/models/basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+    "smpl/models/basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+    "smpl/models/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+    "smpl/smpl_webuser/lbs.py",
+    "smpl/smpl_webuser/LICENSE.txt",
+    "smpl/smpl_webuser/posemapper.py",
+    "smpl/smpl_webuser/README.txt",
+    "smpl/smpl_webuser/serialization.py",
+    "smpl/smpl_webuser/verts.py",
+    "smpl/smpl_webuser/__init__.py",
+    "smpl/smpl_webuser/hello_world/hello_smpl.py",
+    "smpl/smpl_webuser/hello_world/render_smpl.py"
+  ],
+  "independent_subject_count": null,
+  "measurements_available": null,
+  "garment_fit_labels_available": null,
+  "notes": [
+    "File count is not a count of independent people or shapes.",
+    "Pickle files were inventoried but never deserialized because pickle can execute code.",
+    "Subject identity, measurement units, topology, licensing, and training suitability require dataset-specific inspection."
+  ]
+}

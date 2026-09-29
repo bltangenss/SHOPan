@@ -1,0 +1,9 @@
+# SHOPan product visuals
+
+Asset: `public/images/shopan-products.png` (1254 x 1254).
+
+Generated with the built-in image generation tool. These are illustrative product packshots, not photographs of inventory. The storefront labels imagery as visualization. `ProductImage.jsx` maps the nine existing product IDs to cells while preserving garment proportions; unknown products retain the existing fallback thumbnail.
+
+## Generation prompt
+
+Use case: product-mockup. Asset type: a single square 3 by 3 apparel product atlas for the SHOPan online store. Exactly nine equal square cells in a perfectly aligned 3x3 grid with no gaps, borders, text or logos. Each cell is a clean high-end ecommerce studio packshot, front view of one complete garment, floating ghost mannequin styling with realistic fabric depth and natural folds, no human body, no hanger. Uniform very light cool gray background in every cell, soft diffuse lighting and subtle grounded shadows. Every garment centered and fully visible with generous 15% empty margins inside its own cell. Row 1 from left: ivory short-sleeve crewneck cotton T-shirt; charcoal black short-sleeve crewneck cotton T-shirt; charcoal gray wool hip-length overcoat with classic lapels and buttons. Row 2 from left: near-black tailored wool overcoat with lapels and concealed buttons; charcoal black straight-leg full-length tailored trousers; muted terracotta straight-leg cotton twill trousers. Row 3 from left: deep burgundy red midi wrap dress with V-neck, elbow-length sleeves, tied waist; ivory loose cotton muslin midi dress with short sleeves; muted terracotta A-line midi skirt. Fashion product photography quality, precise fabric texture, realistic construction, calm clean catalog lighting. The subjects must not overlap cell boundaries. No collage decorations, no people, no accessories, no shoes, no labels, no typography, no watermark. Square composition.

@@ -1,0 +1,76 @@
+{
+  "models": [
+    {
+      "file": "C:\\Users\\ASUS\\Downloads\\SMPL_python_v.1.1.0\\SMPL_python_v.1.1.0\\smpl\\models\\basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+      "bytes": 247530000,
+      "sha256": "6d4a1791b6b94880397e1a3a4539b703a228d2150c57de7b288389a8115f4ef0",
+      "shapedirs": [
+        6890,
+        3,
+        300
+      ],
+      "shape_components": 300,
+      "posedirs": [
+        6890,
+        3,
+        207
+      ],
+      "template_vertices": [
+        6890,
+        3
+      ],
+      "faces": [
+        13776,
+        3
+      ]
+    },
+    {
+      "file": "C:\\Users\\ASUS\\Downloads\\SMPL_python_v.1.1.0\\SMPL_python_v.1.1.0\\smpl\\models\\basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+      "bytes": 247101031,
+      "sha256": "ed4d55bb3041fefc6f73b70694d6c8edc1020c0d07340be5cc651cae2c6a6ae3",
+      "shapedirs": [
+        6890,
+        3,
+        300
+      ],
+      "shape_components": 300,
+      "posedirs": [
+        6890,
+        3,
+        207
+      ],
+      "template_vertices": [
+        6890,
+        3
+      ],
+      "faces": [
+        13776,
+        3
+      ]
+    },
+    {
+      "file": "C:\\Users\\ASUS\\Downloads\\SMPL_python_v.1.1.0\\SMPL_python_v.1.1.0\\smpl\\models\\basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+      "bytes": 247186228,
+      "sha256": "4924f235e63f7c5d5b690acedf736419c2edb846a2d69fc0956169615fa75688",
+      "shapedirs": [
+        6890,
+        3,
+        300
+      ],
+      "shape_components": 300,
+      "posedirs": [
+        6890,
+        3,
+        207
+      ],
+      "template_vertices": [
+        6890,
+        3
+      ],
+      "faces": [
+        13776,
+        3
+      ]
+    }
+  ]
+}

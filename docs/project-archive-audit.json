@@ -1,0 +1,67 @@
+{
+  "source": "C:\\Users\\ASUS\\Downloads\\virtual-fitting-room-ai\\.source-inspection\\project\\virtual-fitting-room",
+  "source_type": "directory",
+  "file_count": 31,
+  "total_uncompressed_bytes": 2611636,
+  "extensions": {
+    ".css": 1,
+    ".glb": 2,
+    ".html": 1,
+    ".js": 9,
+    ".json": 3,
+    ".jsx": 13,
+    ".md": 1,
+    "[none]": 1
+  },
+  "model_parameter_files": [],
+  "geometry_files": [
+    "public/models/smpl_female.glb",
+    "public/models/smpl_male.glb"
+  ],
+  "potential_tabular_files": [
+    "package-lock.json",
+    "package.json",
+    "src/data/measurement_to_beta.json"
+  ],
+  "sample_paths": [
+    ".gitignore",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "README.md",
+    "vite.config.js",
+    "src/App.jsx",
+    "src/main.jsx",
+    "src/styles.css",
+    "src/components/AIConsultant.jsx",
+    "src/components/Avatar.jsx",
+    "src/components/Cart.jsx",
+    "src/components/Catalog.jsx",
+    "src/components/ErrorBoundary.jsx",
+    "src/components/FittingStage.jsx",
+    "src/components/Garment.jsx",
+    "src/components/GarmentThumb.jsx",
+    "src/components/MeasurementForm.jsx",
+    "src/components/Recommendations.jsx",
+    "src/components/Segment.jsx",
+    "src/data/catalog.js",
+    "src/data/measurement_to_beta.json",
+    "src/data/sizeChart.js",
+    "src/utils/bodyGeometry.js",
+    "src/utils/consultant.js",
+    "src/utils/limb.js",
+    "src/utils/limbPoints.js",
+    "src/utils/recommend.js",
+    "src/utils/smplRegression.js",
+    "public/models/smpl_female.glb",
+    "public/models/smpl_male.glb"
+  ],
+  "independent_subject_count": null,
+  "measurements_available": null,
+  "garment_fit_labels_available": null,
+  "notes": [
+    "File count is not a count of independent people or shapes.",
+    "Pickle files were inventoried but never deserialized because pickle can execute code.",
+    "Subject identity, measurement units, topology, licensing, and training suitability require dataset-specific inspection."
+  ]
+}

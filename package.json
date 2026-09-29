@@ -1,0 +1,31 @@
+{
+  "name": "virtual-fitting-room",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "node server/index.js",
+    "test": "node --test server/*.test.js",
+    "audit:data": "py scripts/audit_300shapes.py",
+    "admin:create": "node scripts/create_admin.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.111.0",
+    "@react-three/fiber": "^8.16.8",
+    "lucide-react": "^1.48.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.160.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
