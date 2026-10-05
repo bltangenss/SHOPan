@@ -4,15 +4,12 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { clone as cloneSkeleton } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { computeBodyMetrics } from '../utils/bodyGeometry.js';
-import { predictBetas } from '../utils/smplRegression.js';
+import { predictBetas, SMPL_SHAPE_COMPONENTS } from '../utils/smplRegression.js';
 
 const MODEL_URL = {
-  female: '/models/smpl_female.glb',
-  male: '/models/smpl_male.glb',
+  female: '/models/smpl_female_300.glb',
+  male: '/models/smpl_male_300.glb',
 };
-
-useGLTF.preload(MODEL_URL.female);
-useGLTF.preload(MODEL_URL.male);
 
 function Hair({ metrics, headCenterY, color, style }) {
   const { headR } = metrics;
@@ -47,10 +44,9 @@ function Hair({ metrics, headCenterY, color, style }) {
 
 /**
  * Real, anatomically-derived human body: a rigged SMPL mesh (24-joint
- * skeleton, 6890 vertices, learned from thousands of body scans) reshaped
- * by 10 morph targets whose weights come from a regression trained to match
- * your entered measurements (see smplRegression.js). Hair is still a
- * procedural extra — SMPL itself ships bald.
+ * skeleton, 6890 vertices and all 300 SMPL shape targets. The available body
+ * measurements drive the calibrated principal components; unconstrained
+ * detail components stay neutral. Hair is a procedural extra.
  */
 export default function Avatar({ measurements, gender, skinTone, hairColor }) {
   const groupRef = useRef();
@@ -87,19 +83,23 @@ export default function Avatar({ measurements, gender, skinTone, hairColor }) {
     if (!skinnedMesh) return null;
     const betas = predictBetas(gender, measurements);
     const influences = skinnedMesh.morphTargetInfluences;
-    if (influences) {
+    if (influences?.length >= SMPL_SHAPE_COMPONENTS) {
+      influences.fill(0);
       for (let i = 0; i < betas.length && i < influences.length; i++) influences[i] = betas[i];
     }
 
     const geo = skinnedMesh.geometry;
     const base = geo.attributes.position;
     const morphs = geo.morphAttributes.position || [];
+    const activeBetas = betas
+      .map((value, index) => ({ value, index }))
+      .filter(({ value, index }) => Math.abs(value) > 1e-8 && index < morphs.length);
     let minY = Infinity;
     let maxY = -Infinity;
     for (let vi = 0; vi < base.count; vi++) {
       let y = base.getY(vi);
-      for (let m = 0; m < morphs.length && m < betas.length; m++) {
-        y += betas[m] * morphs[m].getY(vi);
+      for (const { value, index } of activeBetas) {
+        y += value * morphs[index].getY(vi);
       }
       if (y < minY) minY = y;
       if (y > maxY) maxY = y;

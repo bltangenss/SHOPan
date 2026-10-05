@@ -59,11 +59,15 @@ def sha256_file(path: Path):
     return digest.hexdigest()
 
 
-def inspect_model(path: Path):
+def load_smpl_model(path: Path):
     with path.open("rb") as stream:
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", category=np.exceptions.VisibleDeprecationWarning)
-            model = RestrictedSMPLUnpickler(stream, encoding="latin1").load()
+            return RestrictedSMPLUnpickler(stream, encoding="latin1").load()
+
+
+def inspect_model(path: Path):
+    model = load_smpl_model(path)
 
     shapedirs = unwrap_array(model.get("shapedirs"))
     posedirs = unwrap_array(model.get("posedirs"))

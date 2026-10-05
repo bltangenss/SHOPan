@@ -1,12 +1,13 @@
-import regressionData from '../data/measurement_to_beta.json';
+import regressionData from '../data/measurement_to_beta.json' with { type: 'json' };
+
+export const SMPL_SHAPE_COMPONENTS = 300;
+export const MEASUREMENT_DRIVEN_COMPONENTS = 10;
 
 /**
- * Predicts the 10 SMPL shape (beta) parameters from real body measurements,
- * using a ridge regression trained by sampling thousands of SMPL bodies and
- * measuring their actual 3D geometry (see /smpl-pipeline in the project
- * history). Re-measuring the predicted body typically lands within a few cm
- * of the requested numbers — it is a best-fit approximation, not an exact
- * inversion (5 numbers can't uniquely determine 10 hidden shape components).
+ * Produces the full 300-value SMPL shape vector. The five available body
+ * measurements drive the first 10 principal components through the existing
+ * calibrated regression. The remaining components stay neutral because five
+ * measurements cannot identify 290 extra degrees of freedom reliably.
  */
 export function predictBetas(gender, measurements) {
   const reg = regressionData[gender] ?? regressionData.female;
@@ -21,8 +22,8 @@ export function predictBetas(gender, measurements) {
     1,
   ];
 
-  const betas = new Array(10).fill(0);
-  for (let col = 0; col < 10; col++) {
+  const betas = new Array(SMPL_SHAPE_COMPONENTS).fill(0);
+  for (let col = 0; col < MEASUREMENT_DRIVEN_COMPONENTS; col++) {
     let sum = 0;
     for (let row = 0; row < 6; row++) {
       sum += x[row] * W[row][col];

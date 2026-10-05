@@ -162,8 +162,9 @@ export function createApiHandler(db) {
         return send(res, 200, { products: listProducts(db) });
       }
       if (req.method === 'GET' && path === '/api/model-status') {
-        return send(res, 200, { version: 'existing-smpl-regression-v1',
-          status: 'existing', trainingDataset: 'not_provided',
+        return send(res, 200, { version: 'smpl-300-basis-v2',
+          status: 'ready', shapeBasis: 'SMPL 1.1.0 shapedirs', shapeComponents: 300,
+          measurementDrivenComponents: 10, trainingDataset: 'not_provided',
           fit: 'illustrative', measuredAccuracy: null });
       }
       if (req.method === 'GET' && path === '/api/me') {
@@ -303,8 +304,8 @@ export function createApiHandler(db) {
         if (!variant || !variant.active || !variant.product_active) fail(404, 'Вариант не найден');
         const profile = validateBodyProfile(body.profile || {});
         return send(res, 200, { requestId: randomUUID(), sku: variant.sku,
-          profileVersion: Number(body.profileVersion) || 0, modelVersion: 'existing-smpl-regression-v1',
-          status: 'ready', assetUrl: `/models/smpl_${profile.gender}.glb`,
+          profileVersion: Number(body.profileVersion) || 0, modelVersion: 'smpl-300-basis-v2',
+          status: 'ready', assetUrl: `/models/smpl_${profile.gender}_300.glb`,
           garment: variant.piece, fit: 'illustrative',
           limitation: 'Одежда процедурная; точная физическая посадка не проверена' });
       }
