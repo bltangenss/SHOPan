@@ -307,7 +307,7 @@ export function createApiHandler(db) {
           profileVersion: Number(body.profileVersion) || 0, modelVersion: 'smpl-300-basis-v2',
           status: 'ready', assetUrl: `/models/smpl_${profile.gender}_300.glb`,
           garment: variant.piece, fit: 'illustrative',
-          limitation: 'Одежда процедурная; точная физическая посадка не проверена' });
+          limitation: '3D-визуализация показывает силуэт и объём; точная физика ткани не моделируется' });
       }
       if (req.method === 'POST' && path === '/api/orders') {
         const body = await readJson(req);

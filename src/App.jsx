@@ -257,7 +257,7 @@ export default function App() {
             {compareSku && <><div className="tabs size-compare">
               <button type="button" className={!showComparison ? 'active' : ''} onClick={() => setShowComparison(false)}>Выбранный {activeVariant?.size}</button>
               <button type="button" className={showComparison ? 'active' : ''} onClick={() => setShowComparison(true)}>Сравнить {activeProduct.variants.find((variant) => variant.sku === compareSku)?.size}</button>
-            </div><p className="fine-print">Одинаковое тело и ракурс. Меняется только ширина схематичной одежды.</p></>}
+            </div><p className="fine-print">Одинаковое тело и ракурс. Меняется объём 3D-вещи выбранного размера.</p></>}
             <button className="btn btn--wide" type="button" disabled={!activeVariant?.stock} onClick={() => addToCart(activeVariant.sku)}><ShoppingBag size={18} />В корзину</button>
             <button className="text-button" type="button" onClick={() => navigate(`product/${activeProduct.id}`)}>Открыть товар</button></>}
           <p className="fine-print" role="status">{fitStatus}</p>

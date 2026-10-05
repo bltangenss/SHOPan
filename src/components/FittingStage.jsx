@@ -4,7 +4,6 @@ import { OrbitControls, ContactShadows } from '@react-three/drei';
 import * as THREE from 'three';
 import { Maximize, Minimize, RotateCcw } from 'lucide-react';
 import Avatar from './Avatar.jsx';
-import Garment from './Garment.jsx';
 import { computeBodyMetrics } from '../utils/bodyGeometry.js';
 
 function makeArch(radius, springHeight) {
@@ -116,15 +115,19 @@ function Scene({ measurements, gender, skinTone, hairColor, outfit, modelRef }) 
         shadow-bias={-0.00015}
       />
       <directionalLight color="#dce8ff" position={[-3.2, 2.5, 2.2]} intensity={0.48} />
+      <directionalLight color="#fff5ed" position={[0, 1.8, 4]} intensity={0.38} />
       <directionalLight color="#ffd8c2" position={[0.8, 3.2, -3.5]} intensity={0.62} />
 
       <FittingRoom floorY={-metrics.H / 2} />
 
       <group ref={modelRef} position={[0, -metrics.H / 2, 0]}>
-        <Avatar measurements={measurements} gender={gender} skinTone={skinTone} hairColor={hairColor} />
-        {outfit.pieces.map((piece) => (
-          <Garment key={piece} piece={piece} color={outfit.colors[piece]} metrics={metrics} sizeFactor={outfit.factors?.[piece] || 1} />
-        ))}
+        <Avatar
+          measurements={measurements}
+          gender={gender}
+          skinTone={skinTone}
+          hairColor={hairColor}
+          outfit={outfit}
+        />
       </group>
 
       <ContactShadows position={[0, -metrics.H / 2 + 0.006, 0]} opacity={0.35} scale={3} blur={2.5} far={1.5} />
