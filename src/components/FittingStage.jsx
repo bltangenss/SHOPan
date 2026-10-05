@@ -1,14 +1,14 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, ContactShadows } from '@react-three/drei';
-import { Shape } from 'three';
+import * as THREE from 'three';
 import { Maximize, Minimize, RotateCcw } from 'lucide-react';
 import Avatar from './Avatar.jsx';
 import Garment from './Garment.jsx';
 import { computeBodyMetrics } from '../utils/bodyGeometry.js';
 
 function makeArch(radius, springHeight) {
-  const shape = new Shape();
+  const shape = new THREE.Shape();
   shape.moveTo(-radius, 0);
   shape.lineTo(radius, 0);
   shape.lineTo(radius, springHeight);
@@ -98,10 +98,25 @@ function Scene({ measurements, gender, skinTone, hairColor, outfit, modelRef }) 
 
   return (
     <>
-      <hemisphereLight args={['#fff9ed', '#52635a', 0.85]} />
-      <directionalLight position={[2.5, 4, 3]} intensity={1.45} />
-      <directionalLight position={[-3, 2, 1]} intensity={0.65} />
-      <directionalLight position={[0, 3, -3]} intensity={0.35} />
+      <ambientLight intensity={0.12} />
+      <hemisphereLight args={['#fff7ed', '#344a40', 0.58]} />
+      <directionalLight
+        castShadow
+        color="#fff0df"
+        position={[2.8, 4.4, 3.6]}
+        intensity={1.38}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-near={0.5}
+        shadow-camera-far={10}
+        shadow-camera-left={-1.6}
+        shadow-camera-right={1.6}
+        shadow-camera-top={2.2}
+        shadow-camera-bottom={-2.2}
+        shadow-bias={-0.00015}
+      />
+      <directionalLight color="#dce8ff" position={[-3.2, 2.5, 2.2]} intensity={0.48} />
+      <directionalLight color="#ffd8c2" position={[0.8, 3.2, -3.5]} intensity={0.62} />
 
       <FittingRoom floorY={-metrics.H / 2} />
 
@@ -187,7 +202,18 @@ export default function FittingStage({ measurements, gender, skinTone, hairColor
           {isFullscreen ? <Minimize size={19} /> : <Maximize size={19} />}
         </button>
       </div>
-      <Canvas shadows camera={{ position: [0, 0.05, 4], fov: 32 }} dpr={[1, 2]}>
+      <Canvas
+        shadows
+        camera={{ position: [0, 0.05, 4], fov: 32 }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 0.96;
+          gl.outputColorSpace = THREE.SRGBColorSpace;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+        }}
+      >
         <color attach="background" args={['#83978a']} />
         <Suspense fallback={null}>
           <Scene

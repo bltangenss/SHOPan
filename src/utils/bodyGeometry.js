@@ -1,9 +1,7 @@
 // All measurements come in centimetres from the form.
 // Scene units = metres (1 unit = 1m).
-// This is a *stylised, procedural* mannequin built from primitives — a
-// genuine approximation of human proportions and joints, not a scanned or
-// rigged photorealistic mesh (that needs external 3D assets/GPU models this
-// offline prototype doesn't have access to).
+// These measurements drive both the rigged SMPL body and the procedural
+// clothing layered over it.
 
 const cmToM = (cm) => cm / 100;
 

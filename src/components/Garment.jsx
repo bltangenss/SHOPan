@@ -16,7 +16,7 @@ function TorsoPiece({ metrics, hemY, ease, color, segments = 36 }) {
 
   return (
     <mesh geometry={geo} castShadow receiveShadow>
-      <meshStandardMaterial color={color} roughness={0.82} metalness={0} side={THREE.DoubleSide} />
+      <meshPhysicalMaterial color={color} roughness={0.84} metalness={0} sheen={0.22} sheenRoughness={0.78} side={THREE.DoubleSide} />
     </mesh>
   );
 }
@@ -29,7 +29,7 @@ function DressPiece({ metrics, color, hemY, flareR, ease }) {
 
   return (
     <mesh geometry={geo} castShadow receiveShadow>
-      <meshStandardMaterial color={color} roughness={0.78} side={THREE.DoubleSide} />
+      <meshPhysicalMaterial color={color} roughness={0.8} sheen={0.24} sheenRoughness={0.76} side={THREE.DoubleSide} />
     </mesh>
   );
 }
@@ -42,7 +42,21 @@ function SkirtPiece({ metrics, color, hemY, ease }) {
 
   return (
     <mesh geometry={geo} castShadow receiveShadow>
-      <meshStandardMaterial color={color} roughness={0.8} side={THREE.DoubleSide} />
+      <meshPhysicalMaterial color={color} roughness={0.83} sheen={0.2} sheenRoughness={0.8} side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+
+function TeeCollar({ metrics, ease, color }) {
+  return (
+    <mesh
+      position={[0, metrics.y.neckBase + 0.002, 0]}
+      rotation={[Math.PI / 2, 0, 0]}
+      scale={[1, 0.72, 1]}
+      castShadow
+    >
+      <torusGeometry args={[metrics.neckR * 0.9 * ease, 0.006, 10, 48]} />
+      <meshPhysicalMaterial color={color} roughness={0.82} sheen={0.2} />
     </mesh>
   );
 }
@@ -97,11 +111,13 @@ export default function Garment({ piece, color, metrics, sizeFactor = 1 }) {
   const { H } = metrics;
 
   if (piece === 'tee') {
+    const ease = 1.35 * sizeFactor;
     return (
       <>
-        <TorsoPiece metrics={metrics} hemY={0.48 * H} ease={1.38 * sizeFactor} color={color} />
-        <TeeSleeve metrics={metrics} side={1} ease={1.32 * sizeFactor} color={color} />
-        <TeeSleeve metrics={metrics} side={-1} ease={1.32 * sizeFactor} color={color} />
+        <TorsoPiece metrics={metrics} hemY={0.48 * H} ease={ease} color={color} segments={64} />
+        <TeeSleeve metrics={metrics} side={1} ease={1.26 * sizeFactor} color={color} />
+        <TeeSleeve metrics={metrics} side={-1} ease={1.26 * sizeFactor} color={color} />
+        <TeeCollar metrics={metrics} ease={ease} color={color} />
       </>
     );
   }
